@@ -1,0 +1,1827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #5d3b66;
+      --secondary-color: #8e44ad;
+      --accent-color: #ff6b6b;
+      --accent-2: #ff9f43;
+      --text-color: #2d3748;
+      --light-gray: #f8f9fa;
+      --medium-gray: #e2e8f0;
+      --dark-gray: #4a5568;
+      --white: #ffffff;
+      --gradient-1: linear-gradient(135deg, #5d3b66 0%, #8e44ad 100%);
+      --gradient-2: linear-gradient(135deg, #ff6b6b 0%, #ff9f43 100%);
+      --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.15);
+      --transition: all 0.3s ease;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background-color: #f5f7fa;
+      color: var(--text-color);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    .container {
+      display: flex;
+      padding: 30px;
+      gap: 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    /* Header Styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background-color: #fff;  /* White background */
+  color: #000;             /* Black text */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+/* When scrolling */
+.header.scrolled {
+  padding: 10px 40px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+/* Header links */
+.header a,
+.header nav ul li a {
+  color: #000 !important;  /* Black text */
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+/* Hover effect */
+.header a:hover {
+  color: #ff6600;  /* Orange text on hover */
+}
+/* Optional underline animation for modern look */
+.header nav ul li a {
+  position: relative;
+  padding-bottom: 3px;
+}
+.header nav ul li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background: #ff6600;
+  transition: width 0.3s ease;
+}
+.header nav ul li a:hover::after {
+  width: 100%;
+}
+    .left-section .logo img {
+      height: 65px;
+      width: 170px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border: 1px solid #e5e7eb;
+      background-color: white;
+      padding: 4px;
+      transition: transform 0.3s ease;
+    }
+    .left-section .logo img:hover {
+      transform: scale(1.05);
+    }
+    .center-section {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+    }
+    .location-selector {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      padding: 10px 16px;
+      border-radius: 30px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 1px solid var(--medium-gray);
+    }
+    .location-selector:hover {
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+      transform: translateY(-2px);
+    }
+    #location-name {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-color);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 200px;
+    }
+    .dropdown-arrow {
+      font-size: 14px;
+      color: var(--dark-gray);
+      transition: transform 0.3s ease;
+    }
+    .location-selector:hover .dropdown-arrow {
+      transform: rotate(180deg);
+    }
+    .right-section {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links li a {
+      text-decoration: none;
+      color: var(--primary-color);
+      font-weight: 600;
+      font-size: 16px;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    .nav-links li a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-2);
+      transition: width 0.3s ease;
+    }
+    .nav-links li a:hover {
+      color: var(--accent-color);
+    }
+    .nav-links li a:hover::after {
+      width: 100%;
+    }
+    /* Main Content */
+    .main-content {
+      margin-left: 270px;
+      padding: 20px;
+      margin-top: 80px;
+    }
+    /* Left Panel */
+    .left-panel {
+      position: fixed;
+      top: 100px;
+      left: 20px;
+      width: 250px;
+      background-color: white;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      z-index: 100;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
+      transition: all 0.3s ease;
+    }
+    .left-panel h3 {
+      margin-bottom: 20px;
+      font-size: 20px;
+      color: var(--primary-color);
+      font-weight: 600;
+      text-align: center;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    .left-panel h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 3px;
+      background: var(--gradient-1);
+      border-radius: 2px;
+    }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+    .service-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 15px 10px;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-1);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+    .service-item:hover::before {
+      opacity: 0.1;
+    }
+    .service-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+    .service-item img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 10px;
+      padding: 0;
+      background-color: var(--light-gray);
+      transition: all 0.3s ease;
+    }
+    .service-item:hover img {
+      transform: scale(1.1);
+    }
+    .service-item span {
+      font-size: 14px;
+      margin-top: 10px;
+      font-weight: 500;
+      color: var(--dark-gray);
+      transition: color 0.3s ease;
+    }
+    .service-item:hover span {
+      color: var(--primary-color);
+    }
+    /* Right Panel */
+    .right-panel {
+      flex-grow: 1;
+    }
+    .service-gridd {
+      padding: 20px 0 30px;
+    }
+    .service-gridd h1 {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+      position: relative;
+      display: inline-block;
+    }
+    .service-gridd h1::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 80px;
+      height: 4px;
+      background: var(--gradient-2);
+      border-radius: 2px;
+    }
+    .banner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+      border-radius: 15px;
+      overflow: hidden;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+    .banner:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+    .banner-text {
+      max-width: 60%;
+    }
+    .banner-text h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: var(--text-color);
+      font-weight: 600;
+    }
+    .banner-text .tag {
+      display: inline-block;
+      background-color: #0097a7;
+      color: white;
+      font-size: 13px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+    .banner img {
+      width: 300px;
+      height: 250px;
+      border-radius: 10px;
+      object-fit: cover;
+      transition: all 0.3s ease;
+    }
+    .banner:hover img {
+      transform: scale(1.05);
+    }
+    /* Service Section */
+    .service-section {
+      margin-bottom: 40px;
+    }
+    .service-section h1 {
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--medium-gray);
+    }
+    /* Service Cards */
+    .service-card {
+      background: white;
+      border: 1px solid var(--medium-gray);
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: var(--gradient-1);
+      transform: scaleY(0);
+      transition: transform 0.3s ease;
+    }
+    .service-card:hover::before {
+      transform: scaleY(1);
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+    .service-info {
+      flex: 1;
+      margin-right: 20px;
+    }
+    .service-info h2 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-color);
+      margin-bottom: 8px;
+    }
+    .rating {
+      color: #f39c12;
+      font-size: 14px;
+      margin: 5px 0;
+      display: flex;
+      align-items: center;
+    }
+    .rating i {
+      margin-right: 3px;
+    }
+    .price {
+      font-weight: 600;
+      font-size: 16px;
+      margin-bottom: 8px;
+      color: var(--accent-color);
+    }
+    .desc {
+      font-size: 14px;
+      color: var(--dark-gray);
+      margin-bottom: 8px;
+    }
+    .view-link {
+      display: inline-block;
+      font-size: 14px;
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .view-link:hover {
+      color: var(--secondary-color);
+      text-decoration: underline;
+    }
+    .service-image {
+      text-align: center;
+    }
+    .service-image img {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      background-color: var(--light-gray);
+      padding: 0;
+      transition: all 0.3s ease;
+    }
+    .service-card:hover .service-image img {
+      transform: scale(1.1);
+    }
+    .add-button {
+      padding: 10px 20px;
+      background: var(--gradient-1);
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(93, 59, 102, 0.3);
+    }
+    .add-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(93, 59, 102, 0.4);
+    }
+    .options {
+      font-size: 12px;
+      color: var(--dark-gray);
+      margin-top: 5px;
+    }
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.6);
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .modal-content {
+      background-color: white;
+      margin: 5% auto;
+      padding: 30px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 600px;
+      position: relative;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      animation: slideIn 0.3s ease;
+    }
+    @keyframes slideIn {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .close-btn {
+      position: absolute;
+      right: 20px;
+      top: 15px;
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--dark-gray);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+    .close-btn:hover {
+      color: white;
+      background-color: var(--accent-color);
+      transform: rotate(90deg);
+    }
+    .modal-content h2 {
+      margin-bottom: 10px;
+      font-size: 24px;
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+    .modal-content p {
+      color: var(--dark-gray);
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+    .process-section {
+      background-color: #f8f9fa;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 12px;
+      border-left: 4px solid var(--primary-color);
+    }
+    .process-section h2 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: var(--primary-color);
+    }
+    .process-step {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--medium-gray);
+      color: var(--text-color);
+    }
+    .process-step:last-child {
+      border-bottom: none;
+    }
+    .process-step strong {
+      color: var(--primary-color);
+      font-size: 16px;
+      display: block;
+      margin-bottom: 5px;
+    }
+    .modal-footer {
+      text-align: center;
+      margin-top: 25px;
+    }
+    .done-btn {
+      background: var(--gradient-1);
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(93, 59, 102, 0.3);
+    }
+    .done-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(93, 59, 102, 0.4);
+    }
+    /* Cart Panel */
+    .side-cart {
+      position: fixed;
+      top: 100px;
+      right: 20px;
+      width: 320px;
+      z-index: 99;
+    }
+    #cartPanel {
+      background-color: white;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+    #cartPanel:hover {
+      box-shadow: var(--shadow-hover);
+    }
+    #cartPanel h3 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: var(--primary-color);
+      font-weight: 600;
+      text-align: center;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    #cartPanel h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 3px;
+      background: var(--gradient-1);
+      border-radius: 2px;
+    }
+    #cart-items {
+      max-height: 200px;
+      overflow-y: auto;
+      margin-bottom: 15px;
+      padding-right: 5px;
+    }
+    #cart-items::-webkit-scrollbar {
+      width: 5px;
+    }
+    #cart-items::-webkit-scrollbar-track {
+      background: var(--light-gray);
+      border-radius: 10px;
+    }
+    #cart-items::-webkit-scrollbar-thumb {
+      background: var(--gradient-1);
+      border-radius: 10px;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      background: var(--light-gray);
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+    .cart-item:hover {
+      background: #f0f0f0;
+      transform: translateX(5px);
+    }
+    .cart-item button {
+      background: transparent;
+      border: none;
+      color: var(--accent-color);
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .cart-item button:hover {
+      transform: scale(1.2);
+    }
+    #cart-total {
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--primary-color);
+      text-align: right;
+      margin-bottom: 15px;
+    }
+    .cart-summary {
+      margin-top: 15px;
+      background-color: var(--light-gray);
+      border-radius: 10px;
+      padding: 15px;
+      font-size: 14px;
+      border: 1px solid var(--medium-gray);
+    }
+    .cart-summary p {
+      margin: 8px 0;
+      display: flex;
+      justify-content: space-between;
+    }
+    .cart-summary hr {
+      margin: 12px 0;
+      border: none;
+      border-top: 1px solid var(--medium-gray);
+    }
+    .cart-summary strong {
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+    .view-cart-wrapper {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .view-cart-btn {
+      background: var(--gradient-2);
+      color: white;
+      padding: 12px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 25px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+    .view-cart-btn:hover {
+      background: var(--gradient-1);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    }
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+      .container {
+        padding: 20px;
+      }
+      
+      .left-panel {
+        width: 220px;
+      }
+      
+      .main-content {
+        margin-left: 240px;
+      }
+      
+      .banner img {
+        width: 250px;
+        height: 200px;
+      }
+    }
+    @media (max-width: 992px) {
+      .left-panel {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        margin-bottom: 20px;
+        max-height: none;
+      }
+      
+      .main-content {
+        margin-left: 0;
+      }
+      
+      .side-cart {
+        position: relative;
+        top: 0;
+        right: 0;
+        width: 100%;
+        margin-top: 20px;
+      }
+      
+      .service-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      
+      .banner {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .banner-text {
+        max-width: 100%;
+        margin-bottom: 20px;
+      }
+      
+      .banner img {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+      }
+    }
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        padding: 15px 20px;
+      }
+      
+      .header .left-section,
+      .header .center-section,
+      .header .right-section {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 10px;
+      }
+      
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .service-card {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .service-info {
+        margin-right: 0;
+        margin-bottom: 15px;
+      }
+    }
+    @media (max-width: 576px) {
+      .service-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .modal-content {
+        width: 95%;
+        padding: 20px;
+      }
+      
+      .modal-content h2 {
+        font-size: 20px;
+      }
+      
+      .process-step {
+        padding: 8px 0;
+        font-size: 14px;
+      }
+      
+      .done-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+      }
+    }
+    /* Highlight animation */
+    .highlight {
+      animation: highlight 2s ease;
+    }
+    @keyframes highlight {
+      0% { background-color: rgba(93, 59, 102, 0.2); }
+      100% { background-color: transparent; }
+    }
+    /* Loading animation */
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(93, 59, 102, 0.3);
+      border-radius: 50%;
+      border-top-color: var(--primary-color);
+      animation: spin 1s ease-in-out infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+.logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+            font-size: 2.2rem;
+        }
+          </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="left-section">
+       <div class="logo">
+                
+                SpitiCare
+            </div>
+    </div>
+    <div class="center-section">
+      <div class="location-selector" onclick="detectLocation()">
+        <label class="search-label">
+          <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="Location Icon" style="width: 18px; margin-right: 6px;" />
+        </label>
+        <span id="location-name">Use Current Location</span>
+        <span class="dropdown-arrow">▼</span>
+      </div>
+    </div>
+    <div class="right-section">
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.php">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+                </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="container">
+    <div class="left-panel">
+      <h3>Select a service</h3>
+      <div class="service-grid">
+        <div class="service-item">
+          <!-- Using Unsplash for painting related icons -->
+          <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=100&h=100&fit=crop" alt="Wall Painting" class="service-icon" data-target="wall-painting" />
+          <span>Wall Painting</span>
+        </div>
+        <div class="service-item">
+          <img src="https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?w=100&h=100&fit=crop" alt="Waterproofing" class="service-icon" data-target="waterproofing"/>
+          <span>Waterproofing</span>
+        </div>
+        <div class="service-item">
+          <img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=100&h=100&fit=crop" alt="Texture Painting" class="service-icon" data-target="texture-painting"/>
+          <span>Texture & Stencil</span>
+        </div>
+        <div class="service-item">
+          <img src="https://images.unsplash.com/photo-1611486212557-88be5ff6f941?w=100&h=100&fit=crop" alt="Wood Polish" class="service-icon" data-target="wood-polish"/>
+          <span>Wood & Metal</span>
+        </div>
+        <div class="service-item">
+          <img src="https://images.unsplash.com/photo-1595855709915-38e2c2495205?w=100&h=100&fit=crop" alt="Exterior" class="service-icon" data-target="exterior-painting"/>
+          <span>Exterior</span>
+        </div>
+        <div class="service-item">
+          <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?w=100&h=100&fit=crop" alt="Pop Ceiling" class="service-icon" data-target="pop-ceiling"/>
+          <span>Pop Ceiling</span>
+        </div>
+        <div class="service-item">
+          <img src="https://images.unsplash.com/photo-1562663474-6cbb3eaa4d14?w=100&h=100&fit=crop" alt="Repair" class="service-icon" data-target="crack-repair"/>
+          <span>Crack Repair</span>
+        </div>
+        <div class="service-item">
+          <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=100&h=100&fit=crop" alt="Consultation" class="service-icon" data-target="consultation"/>
+          <span>Consultation</span>
+        </div>
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="right-panel">
+        <div class="service-gridd">
+          <h1>Painting</h1>
+        </div>
+        
+        <div class="banner">
+          <div class="banner-text">
+            <div class="tag">Premium Finish</div>
+            <h2>Transform your home with expert painting services</h2>
+          </div>
+          <img src="https://images.unsplash.com/photo-1562663474-6cbb3eaa4d14?w=500" alt="Painting Service Image" />
+        </div>
+        <section id="wall-painting" class="service-section">
+          <h1>Wall Painting</h1>
+          <!-- Service Cards -->
+          <div class="service-card">
+            <div class="service-info">
+              <h2>Interior Wall Painting</h2>
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                4.9 (45K reviews)
+              </div>
+              <div class="price">Starts at ₹12/sq.ft</div>
+              <a href="#" class="view-link">View details</a>
+            </div>
+            <div class="service-image">
+              <img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=100" alt="Interior Paint">
+              <button class="add-button" onclick="openModal('modal1')">Add</button>
+              <div class="options">3 options</div>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-info">
+              <h2>Whitewashing</h2>
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                4.7 (12K reviews)
+              </div>
+              <div class="price">Starts at ₹5/sq.ft</div>
+              <div class="desc">Economical lime finish for fresh look</div>
+              <a href="#" class="view-link">View details</a>
+            </div>
+            <div class="service-image">
+              <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=100" alt="Whitewash">
+              <button class="add-button" onclick="openModal('modal2')">Add</button>
+              <div class="options">2 options</div>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-info">
+              <h2>Oil Bound Distemper</h2>
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                4.6 (8K reviews)
+              </div>
+              <div class="price">Starts at ₹8/sq.ft</div>
+              <a href="#" class="view-link">View details</a>
+            </div>
+            <div class="service-image">
+              <img src="https://images.unsplash.com/photo-1595855709915-38e2c2495205?w=100" alt="Distemper">
+              <button class="add-button" onclick="openModal('modal3')">Add</button>
+              <div class="options">2 options</div>
+            </div>
+          </div>
+        </section>
+        <!-- Modals for Wall Painting -->
+        <div id="modal1" class="modal">
+          <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal1')">×</span>
+            <h2>Interior Wall Painting</h2>
+            <p>★ 4.9 (45K reviews)</p>
+            <div class="process-section">
+              <h2>Our process</h2>
+              <div class="process-step" data-step="1">
+                <strong>Surface Preparation</strong><br>
+                Sanding, putty application, and priming the walls
+              </div>
+              <div class="process-step" data-step="2">
+                <strong>Protection</strong><br>
+                Masking furniture and floors to protect from splatter
+              </div>
+              <div class="process-step" data-step="3">
+                <strong>Painting</strong><br>
+                Applying 2-3 coats of premium paint for even finish
+              </div>
+              <div class="process-step" data-step="4">
+                <strong>Cleanup</strong><br>
+                Post-painting cleaning and debris removal
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="done-btn" onclick="addToCart('Interior Wall Painting', 1200, 'modal1')">Done</button>
+            </div>
+          </div>
+        </div>
+        <div id="modal2" class="modal">
+          <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal2')">×</span>
+            <h2>Whitewashing</h2>
+            <p>★ 4.7 (12K reviews)</p>
+            <div class="process-section">
+              <h2>Our process</h2>
+              <div class="process-step" data-step="1">
+                <strong>Cleaning</strong><br>
+                Cleaning the surface of dust and grease
+              </div>
+              <div class="process-step" data-step="2">
+                <strong>Application</strong><br>
+                Applying lime coating with brushes
+              </div>
+              <div class="process-step" data-step="3">
+                <strong>Drying</strong><br>
+                Allowing adequate time for drying and curing
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="done-btn" onclick="addToCart('Whitewashing', 500, 'modal2')">Done</button>
+            </div>
+          </div>
+        </div>
+        <div id="modal3" class="modal">
+          <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal3')">×</span>
+            <h2>Oil Bound Distemper</h2>
+            <p>★ 4.6 (8K reviews)</p>
+            <div class="process-section">
+              <h2>Our process</h2>
+              <div class="process-step" data-step="1">
+                <strong>Surface Prep</strong><br>
+                Smoothening walls and filling minor cracks
+              </div>
+              <div class="process-step" data-step="2">
+                <strong>Priming</strong><br>
+                Applying a primer for better adhesion
+              </div>
+              <div class="process-step" data-step="3">
+                <strong>Coating</strong><br>
+                Applying distemper for a durable matte finish
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="done-btn" onclick="addToCart('Oil Bound Distemper', 800, 'modal3')">Done</button>
+            </div>
+          </div>
+        </div>
+
+        <section id="waterproofing" class="service-section">
+          <h1>Waterproofing</h1>
+          <!-- Service Cards -->
+          <div class="service-card">
+            <div class="service-info">
+              <h2>Rooftop Waterproofing</h2>
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                4.85 (15K reviews)
+              </div>
+              <div class="price">Starts at ₹45/sq.ft</div>
+              <a href="#" class="view-link">View details</a>
+            </div>
+            <div class="service-image">
+              <img src="https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?w=100" alt="Rooftop">
+              <button class="add-button" onclick="openModal('modal4')">Add</button>
+              <div class="options">2 options</div>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-info">
+              <h2>Bathroom Waterproofing</h2>
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                4.88 (20K reviews)
+              </div>
+              <div class="price">Starts at ₹60/sq.ft</div>
+              <div class="desc">Anti-fungal and water-resistant treatment</div>
+              <a href="#" class="view-link">View details</a>
+            </div>
+            <div class="service-image">
+              <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=100" alt="Bathroom">
+              <button class="add-button" onclick="openModal('modal5')">Add</button>
+              <div class="options">3 options</div>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-info">
+              <h2>Water Tank Waterproofing</h2>
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                4.9 (10K reviews)
+              </div>
+              <div class="price">Starts at ₹50/sq.ft</div>
+              <a href="#" class="view-link">View details</a>
+            </div>
+            <div class="service-image">
+              <img src="https://images.unsplash.com/photo-1584622050111-993a426fbf0a?w=100" alt="Tank">
+              <button class="add-button" onclick="openModal('modal6')">Add</button>
+              <div class="options">2 options</div>
+            </div>
+          </div>
+        </section>
+        <!-- Modals for Waterproofing -->
+        <div id="modal4" class="modal">
+          <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal4')">×</span>
+            <h2>Rooftop Waterproofing</h2>
+            <p>★ 4.85 (15K reviews)</p>
+            <div class="process-section">
+              <h2>Our process</h2>
+              <div class="process-step" data-step="1">
+                <strong>Cleaning</strong><br>
+                High-pressure cleaning of the roof surface
+              </div>
+              <div class="process-step" data-step="2">
+                <strong>Crack Filling</strong><br>
+                Filling existing cracks with polymer compound
+              </div>
+              <div class="process-step" data-step="3">
+                <strong>Coating</strong><br>
+                Applying UV-resistant waterproof coating
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="done-btn" onclick="addToCart('Rooftop Waterproofing', 4500, 'modal4')">Done</button>
+            </div>
+          </div>
+        </div>
+        <div id="modal5" class="modal">
+          <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal5')">×</span>
+            <h2>Bathroom Waterproofing</h2>
+            <p>★ 4.88 (20K reviews)</p>
+            <div class="process-section">
+              <h2>Our process</h2>
+              <div class="process-step" data-step="1">
+                <strong>Surface Check</strong><br>
+                Checking for dampness and loose tiles
+              </div>
+              <div class="process-step" data-step="2">
+                <strong>Treatment</strong><br>
+                Applying waterproofing slurry to walls and floor
+              </div>
+              <div class="process-step" data-step="3">
+                <strong>Finishing</strong><br>
+                Re-tiling or finishing as required
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="done-btn" onclick="addToCart('Bathroom Waterproofing', 6000, 'modal5')">Done</button>
+            </div>
+          </div>
+        </div>
+        <div id="modal6" class="modal">
+          <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal6')">×</span>
+            <h2>Water Tank Waterproofing</h2>
+            <p>★ 4.9 (10K reviews)</p>
+            <div class="process-section">
+              <h2>Our process</h2>
+              <div class="process-step" data-step="1">
+                <strong>Emptying & Cleaning</strong><br>
+                Emptying tank and scrubbing internal surface
+              </div>
+              <div class="process-step" data-step="2">
+                <strong>Repair</strong><br>
+                Fixing leaks and structural damages
+              </div>
+              <div class="process-step" data-step="3">
+                <strong>Food-grade Coating</strong><br>
+                Applying safe, potable waterproof coating
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="done-btn" onclick="addToCart('Water Tank Waterproofing', 5000, 'modal6')">Done</button>
+            </div>
+          </div>
+        </div>
+
+        <section id="texture-painting" class="service-section">
+          <h1>Texture & Stencil</h1>
+          <div class="service-card">
+            <div class="service-info">
+              <h2>Royal Play / Texture</h2>
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                4.95 (5K reviews)
+              </div>
+              <div class="price">Starts at ₹80/sq.ft</div>
+              <a href="#" class="view-link">View details</a>
+            </div>
+            <div class="service-image">
+              <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=100" alt="Texture">
+              <button class="add-button" onclick="openModal('modal7')">Add</button>
+              <div class="options">4 options</div>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-info">
+              <h2>Stencil Design</h2>
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                4.9 (8K reviews)
+              </div>
+              <div class="price">Starts at ₹50/design</div>
+              <div class="desc">Custom artistic patterns on walls</div>
+              <a href="#" class="view-link">View details</a>
+            </div>
+            <div class="service-image">
+              <img src="https://images.unsplash.com/photo-1563182397-8ff7e0b733ad?w=100" alt="Stencil">
+              <button class="add-button" onclick="openModal('modal8')">Add</button>
+              <div class="options">10+ options</div>
+            </div>
+          </div>
+        </section>
+        <!-- Modals Texture -->
+        <div id="modal7" class="modal">
+          <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal7')">×</span>
+            <h2>Royal Play / Texture</h2>
+            <p>★ 4.95 (5K reviews)</p>
+            <div class="process-section">
+              <h2>Our process</h2>
+              <div class="process-step" data-step="1">
+                <strong>Base Preparation</strong><br>
+                Applying putty and primer for smooth base
+              </div>
+              <div class="process-step" data-step="2">
+                <strong>Texture Application</strong><br>
+                Applying texture material using specialized tools
+              </div>
+              <div class="process-step" data-step="3">
+                <strong>Top Coat</strong><br>
+                Applying glazer or metallic paint for finishing
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="done-btn" onclick="addToCart('Royal Play / Texture', 8000, 'modal7')">Done</button>
+            </div>
+          </div>
+        </div>
+        <div id="modal8" class="modal">
+          <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal8')">×</span>
+            <h2>Stencil Design</h2>
+            <p>★ 4.9 (8K reviews)</p>
+            <div class="process-section">
+              <h2>Our process</h2>
+              <div class="process-step" data-step="1">
+                <strong>Selection</strong><br>
+                Choose stencil pattern from catalog or custom
+              </div>
+              <div class="process-step" data-step="2">
+                <strong>Placement</strong><br>
+                Fixing stencil on the desired wall area
+              </div>
+              <div class="process-step" data-step="3">
+                <strong>Painting</strong><br>
+                Sponge or brush painting over the stencil cutouts
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="done-btn" onclick="addToCart('Stencil Design', 500, 'modal8')">Done</button>
+            </div>
+          </div>
+        </div>
+
+        <section id="wood-polish" class="service-section">
+          <h1>Wood & Metal Polish</h1>
+          <div class="service-card">
+            <div class="service-info">
+              <h2>Wooden Furniture Polish</h2>
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                4.85 (18K reviews)
+              </div>
+              <div class="price">Starts at ₹500/piece</div>
+              <a href="#" class="view-link">View details</a>
+            </div>
+            <div class="service-image">
+              <img src="https://images.unsplash.com/photo-1611486212557-88be5ff6f941?w=100" alt="Wood Polish">
+              <button class="add-button" onclick="openModal('modal9')">Add</button>
+              <div class="options">3 options</div>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-info">
+              <h2>Metal Painting (Enamel)</h2>
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                4.8 (22K reviews)
+              </div>
+              <div class="price">Starts at ₹400/piece</div>
+              <div class="desc">Glossy finish for gates, grills, and windows</div>
+              <a href="#" class="view-link">View details</a>
+            </div>
+            <div class="service-image">
+              <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=100" alt="Metal Paint">
+              <button class="add-button" onclick="openModal('modal10')">Add</button>
+              <div class="options">2 options</div>
+            </div>
+          </div>
+        </section>
+        <!-- Modals Wood/Metal -->
+        <div id="modal9" class="modal">
+          <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal9')">×</span>
+            <h2>Wooden Furniture Polish</h2>
+            <p>★ 4.85 (18K reviews)</p>
+            <div class="process-section">
+              <h2>Our process</h2>
+              <div class="process-step" data-step="1">
+                <strong>Sanding</strong><br>
+                Removing old polish using sandpaper
+              </div>
+              <div class="process-step" data-step="2">
+                <strong>Staining</strong><br>
+                Applying wood stain for color enhancement
+              </div>
+              <div class="process-step" data-step="3">
+                <strong>French Polish</strong><br>
+                Applying melamine or lacquer finish
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="done-btn" onclick="addToCart('Wooden Furniture Polish', 500, 'modal9')">Done</button>
+            </div>
+          </div>
+        </div>
+        <div id="modal10" class="modal">
+          <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal10')">×</span>
+            <h2>Metal Painting (Enamel)</h2>
+            <p>★ 4.8 (22K reviews)</p>
+            <div class="process-section">
+              <h2>Our process</h2>
+              <div class="process-step" data-step="1">
+                <strong>Derusting</strong><br>
+                Removing rust and loose paint with wire brush
+              </div>
+              <div class="process-step" data-step="2">
+                <strong>Primer</strong><br>
+                Applying red oxide or metal primer
+              </div>
+              <div class="process-step" data-step="3">
+                <strong>Enamel Coat</strong><br>
+                Applying 2 coats of synthetic enamel paint
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="done-btn" onclick="addToCart('Metal Painting', 400, 'modal10')">Done</button>
+            </div>
+          </div>
+        </div>
+        
+        <section id="exterior-painting" class="service-section">
+          <h1>Exterior Painting</h1>
+          <div class="service-card">
+            <div class="service-info">
+              <h2>Building Exterior</h2>
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                4.9 (10K reviews)
+              </div>
+              <div class="price">Starts at ₹20/sq.ft</div>
+              <a href="#" class="view-link">View details</a>
+            </div>
+            <div class="service-image">
+              <img src="https://images.unsplash.com/photo-1595855709915-38e2c2495205?w=100" alt="Exterior">
+              <button class="add-button" onclick="openModal('modal11')">Add</button>
+              <div class="options">2 options</div>
+            </div>
+          </div>
+        </section>
+        <!-- Modal 11 -->
+        <div id="modal11" class="modal">
+          <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal11')">×</span>
+            <h2>Building Exterior</h2>
+            <p>★ 4.9 (10K reviews)</p>
+            <div class="process-section">
+              <h2>Our process</h2>
+              <div class="process-step" data-step="1">
+                <strong>Pressure Wash</strong><br>
+                Deep cleaning of exterior walls
+              </div>
+              <div class="process-step" data-step="2">
+                <strong>Crack Repair</strong><br>
+                Filling cracks with waterproof cement
+              </div>
+              <div class="process-step" data-step="3">
+                <strong>Painting</strong><br>
+                Applying weather-proof exterior paint
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="done-btn" onclick="addToCart('Building Exterior', 2000, 'modal11')">Done</button>
+            </div>
+          </div>
+        </div>
+
+        <section id="pop-ceiling" class="service-section">
+          <h1>Pop Ceiling Painting</h1>
+          <div class="service-card">
+            <div class="service-info">
+              <h2>POP Design Paint</h2>
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                4.88 (7K reviews)
+              </div>
+              <div class="price">Starts at ₹1500/room</div>
+              <a href="#" class="view-link">View details</a>
+            </div>
+            <div class="service-image">
+              <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?w=100" alt="POP Ceiling">
+              <button class="add-button" onclick="openModal('modal12')">Add</button>
+              <div class="options">2 options</div>
+            </div>
+          </div>
+        </section>
+        <div id="modal12" class="modal">
+          <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal12')">×</span>
+            <h2>POP Design Paint</h2>
+            <p>★ 4.88 (7K reviews)</p>
+            <div class="process-section">
+              <h2>Our process</h2>
+              <div class="process-step" data-step="1">
+                <strong>Surface Sanding</strong><br>
+                Smoothening the POP surface
+              </div>
+              <div class="process-step" data-step="2">
+                <strong>Primer</strong><br>
+                Applying acrylic primer for POP
+              </div>
+              <div class="process-step" data-step="3">
+                <strong>Finish Paint</strong><br>
+                Painting with premium plastic emulsion
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="done-btn" onclick="addToCart('POP Design Paint', 1500, 'modal12')">Done</button>
+            </div>
+          </div>
+        </div>
+
+        <section id="crack-repair" class="service-section">
+          <h1>Crack & Hole Repair</h1>
+          <div class="service-card">
+            <div class="service-info">
+              <h2>Wall Patching</h2>
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                4.85 (9K reviews)
+              </div>
+              <div class="price">Starts at ₹99/patch</div>
+              <a href="#" class="view-link">View details</a>
+            </div>
+            <div class="service-image">
+              <img src="https://images.unsplash.com/photo-1562663474-6cbb3eaa4d14?w=100" alt="Patching">
+              <button class="add-button" onclick="openModal('modal13')">Add</button>
+            </div>
+          </div>
+        </section>
+        <div id="modal13" class="modal">
+          <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal13')">×</span>
+            <h2>Wall Patching</h2>
+            <p>★ 4.85 (9K reviews)</p>
+            <div class="process-section">
+              <h2>Our process</h2>
+              <div class="process-step" data-step="1">
+                <strong>Scraping</strong><br>
+                Removing loose plaster around the hole
+              </div>
+              <div class="process-step" data-step="2">
+                <strong>Filling</strong><br>
+                Filling with POP or Wall Putty</              </div>
+              <div class="process-step" data-step="3">
+                <strong>Sanding & Paint</strong><br>
+                Sanding flush and touching up with paint
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="done-btn" onclick="addToCart('Wall Patching', 99, 'modal13')">Done</button>
+            </div>
+          </div>
+        </div>
+
+        <section id="consultation" class="service-section">
+          <h1>Book a consultation</h1>
+          <div class="service-card">
+            <div class="service-info">
+              <h2>Color Consultation</h2>
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                4.95 (12K reviews)
+              </div>
+              <div class="price">Starts at ₹199</div>
+              <a href="#" class="view-link">View details</a>
+            </div>
+            <div class="service-image">
+              <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=100" alt="Consultation">
+              <button class="add-button" onclick="openModal('modal14')">Add</button>
+            </div>
+          </div>
+        </section>
+        <div id="modal14" class="modal">
+          <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal14')">×</span>
+            <h2>Color Consultation</h2>
+            <p>★ 4.95 (12K reviews)</p>
+            <div class="process-section">
+              <h2>Our process</h2>
+              <div class="process-step" data-step="1">
+                <strong>Site Visit</strong><br>
+                Expert visits your home to analyze lighting and space
+              </div>
+              <div class="process-step" data-step="2">
+                <strong>Palette Selection</strong><br>
+                Suggesting color combinations and themes
+              </div>
+              <div class="process-step" data-step="3">
+                <strong>Quote</strong><br>
+                Providing a detailed estimate for the work
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="done-btn" onclick="addToCart('Color Consultation', 199, 'modal14')">Done</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- Cart Panel -->
+    <div class="side-cart">
+      <div class="card" id="cartCard">
+        <div id="cartPanel">
+          <h3>Your Cart</h3>
+          <div id="cart-items"></div>
+          <div><strong>Total:</strong> <span id="cart-total">₹0</span></div>
+          
+          <!-- Cart Summary Section -->
+          <div class="cart-summary" id="cartSummary" style="margin-top: 10px;">
+            <hr>
+            <p><strong>Item Total:</strong> ₹<span id="item-total">0</span></p>
+            <p><strong>Taxes (18%):</strong> ₹<span id="tax">0</span></p>
+            <p><strong>Platform Charges:</strong> ₹69</p>
+            <hr>
+            <p><strong>Total Amount:</strong> ₹<span id="total-amount">0</span></p>
+          </div>
+          
+          <!-- View Cart Button -->
+          <div class="view-cart-wrapper">
+            <button onclick="goToCart()" class="view-cart-btn">🛒 View Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Modal functions
+    function openModal(modalId) {
+      document.getElementById(modalId).style.display = 'block';
+    }
+    
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = 'none';
+    }
+    
+    // Close modal when clicking outside content
+    window.onclick = function(event) {
+      const modals = document.querySelectorAll('.modal');
+      modals.forEach(modal => {
+        if (event.target == modal) {
+          modal.style.display = 'none';
+        }
+      });
+    }
+    
+    // Service icon click handler
+    document.querySelectorAll('.service-icon').forEach(icon => {
+      icon.addEventListener('click', () => {
+        const targetId = icon.getAttribute('data-target');
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+          // Scroll to the section smoothly
+          targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Highlight the section
+          targetSection.classList.add('highlight');
+          // Remove highlight after a few seconds
+          setTimeout(() => {
+            targetSection.classList.remove('highlight');
+          }, 2000);
+        }
+      });
+    });
+    
+    // Location detection
+    function detectLocation() {
+      const locationSpan = document.getElementById("location-name");
+      locationSpan.textContent = "Detecting...";
+      locationSpan.innerHTML = '<div class="loading"></div>';
+      
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          async function (position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            try {
+              const response = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&zoom=10&addressdetails=1`, {
+                headers: {
+                  'User-Agent': 'YourAppName/1.0 (your@email.com)',
+                  'Referer': window.location.href
+                }
+              });
+              if (!response.ok) {
+                throw new Error("Failed to fetch location");
+              }
+              const data = await response.json();
+              const { city, town, village, state, country } = data.address;
+              // Prefer city/town/village then fallback
+              const location = city || town || village || state || country || "Location unavailable";
+              locationSpan.textContent = location;
+            } catch (error) {
+              console.error(error);
+              locationSpan.textContent = "Unable to fetch location";
+            }
+          },
+          function (error) {
+            console.error("Geolocation error:", error);
+            switch (error.code) {
+              case error.PERMISSION_DENIED:
+                locationSpan.textContent = "Permission denied";
+                break;
+              case error.POSITION_UNAVAILABLE:
+                locationSpan.textContent = "Location unavailable";
+                break;
+              case error.TIMEOUT:
+                locationSpan.textContent = "Location request timed out";
+                break;
+              default:
+                locationSpan.textContent = "Unknown error";
+            }
+          },
+          { enableHighAccuracy: true, timeout: 10000 }
+        );
+      } else {
+        locationSpan.textContent = "Geolocation not supported";
+      }
+    }
+    
+    // Cart functionality
+    let cart = [];
+    let total = 0;
+    
+    function addToCart(serviceName, price, modalId) {
+      // Check if item already exists in cart
+      const existingItem = cart.find(item => item.name === serviceName);
+      if (existingItem) {
+        existingItem.qty += 1;
+      } else {
+        cart.push({ name: serviceName, price: price, qty: 1 });
+      }
+      updateCartUI();
+      closeModal(modalId);
+    }
+    
+    function updateCartUI() {
+      const cartItems = document.getElementById('cart-items');
+      cartItems.innerHTML = ""; // Clear previous items
+      total = 0;
+      cart.forEach(item => {
+        const subTotal = item.price * item.qty;
+        total += subTotal;
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'cart-item';
+        itemDiv.innerHTML = `
+          <span>${item.name} - ₹${item.price} × ${item.qty} = ₹${subTotal}</span>
+          <button onclick="removeFromCart('${item.name}')">×</button>
+        `;
+        cartItems.appendChild(itemDiv);
+      });
+      document.getElementById('cart-total').textContent = `₹${total}`;
+      document.getElementById('item-total').textContent = total;
+      const tax = (total * 0.18).toFixed(2);
+      document.getElementById('tax').textContent = tax;
+      const finalAmount = (total + parseFloat(tax) + 69).toFixed(2);
+      document.getElementById('total-amount').textContent = finalAmount;
+      document.getElementById('cartSummary').style.display = 'block';
+      // Save cart to localStorage
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+    
+    function removeFromCart(serviceName) {
+      cart = cart.filter(item => item.name !== serviceName);
+      updateCartUI();
+    }
+    
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = 'none';
+    }
+    
+    function goToCart() {
+      // Save cart again (redundant safety)
+      localStorage.setItem("cart", JSON.stringify(cart));
+      // In a real scenario, this would go to a checkout page.
+      // alert("Proceeding to checkout with total: " + document.getElementById('total-amount').textContent);
+      window.location.href = "electric1.php"; 
+    }
+    
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('.header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // Load cart from localStorage on page load
+    window.addEventListener('load', function() {
+      const savedCart = localStorage.getItem("cart");
+      if (savedCart) {
+        cart = JSON.parse(savedCart);
+        updateCartUI();
+      }
+    });
+  </script>
+</body>
+</html>
